@@ -2,6 +2,7 @@ return { -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
     { 'kmonad/kmonad-vim', fmt = 'kdb' },
+    { 'maelvalais/gmpl.vim' },
   },
   build = ':TSUpdate',
   config = function()

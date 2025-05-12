@@ -15,8 +15,15 @@ return {
     lazy = false,
     config = function()
       require('smart-splits').setup {
-        at_edge = 'stop',
+        -- multiplexer_integration = 'tmux',
+        -- at_edge = 'stop',
+        at_edge = 'wrap',
       }
+
+      -- vim.keymap.set('n', '<C-S-y>', require('smart-splits').resize_left)
+      -- vim.keymap.set('n', '<C-S-u>', require('smart-splits').resize_down)
+      -- vim.keymap.set('n', '<C-S-i>', require('smart-splits').resize_up)
+      -- vim.keymap.set('n', '<C-S-o>', require('smart-splits').resize_right)
 
       vim.keymap.set('n', '<C-S-y>', require('smart-splits').resize_left)
       vim.keymap.set('n', '<C-S-u>', require('smart-splits').resize_down)

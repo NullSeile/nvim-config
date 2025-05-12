@@ -34,9 +34,16 @@ return { -- Collection of various small independent plugins/modules
 
     require('mini.files').setup()
 
-    vim.keymap.set('n', '<leader>f', function(...)
+    local current_file = ''
+    -- local get_current_file = function()
+    --   -- print('Current file: ' .. current_file)
+    --   vim.notify('Current file: ' .. current_file, 5)
+    --   return current_file
+    -- end
+    vim.keymap.set({ 'n', 'v' }, '<leader>f', function(...)
       if not MiniFiles.close() then
-        MiniFiles.open(...)
+        current_file = vim.api.nvim_buf_get_name(0)
+        MiniFiles.open()
       end
     end)
 
@@ -49,23 +56,50 @@ return { -- Collection of various small independent plugins/modules
       vim.fn.chdir(vim.fs.dirname(path))
     end
 
+    local map_split = function(buf_id, lhs, direction)
+      local rhs = function()
+        -- Make new window and set it as target
+        local cur_target = MiniFiles.get_explorer_state().target_window
+        local new_target = vim.api.nvim_win_call(cur_target, function()
+          vim.cmd(direction .. ' split')
+          return vim.api.nvim_get_current_win()
+        end)
+
+        MiniFiles.set_target_window(new_target)
+        MiniFiles.go_in()
+      end
+
+      -- Adding `desc` will result into `show_help` entries
+      local desc = 'Split ' .. direction
+      vim.keymap.set('n', lhs, rhs, { buffer = buf_id, desc = desc })
+    end
+
     vim.api.nvim_create_autocmd('User', {
       pattern = 'MiniFilesBufferCreate',
       callback = function(args)
+        local buf_id = args.data.buf_id
+        map_split(buf_id, '<C-s>', 'belowright horizontal')
+        map_split(buf_id, '<C-v>', 'belowright vertical')
+
         local b = args.data.buf_id
         vim.keymap.set('n', '.', set_cwd, { buffer = b, desc = 'Set cwd' })
+        vim.keymap.set('n', '<leader><leader>', function()
+          MiniFiles.open(current_file)
+          MiniFiles.reveal_cwd()
+        end, { buffer = b, desc = 'Close' })
       end,
     })
     local set_mark = function(id, path, desc)
       MiniFiles.set_bookmark(id, path, { desc = desc })
     end
+
     vim.api.nvim_create_autocmd('User', {
       pattern = 'MiniFilesExplorerOpen',
       callback = function()
         set_mark('c', vim.fn.stdpath 'config', 'Config') -- path
         set_mark('w', vim.fn.getcwd, 'Working directory') -- callable
         set_mark('~', '~', 'Home directory')
-        -- set_mark('d', '~/Documents/Development/', 'Development')
+        -- set_mark(' ', get_current_file, 'Current file')
       end,
     })
     -- vim.keymap.nnoremap { '<leader>g', '<cmd>lua require("mini.git").status()<CR>' }

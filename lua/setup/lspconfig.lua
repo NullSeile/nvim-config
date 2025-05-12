@@ -5,6 +5,11 @@ return {
     lazy = false, -- This plugin is already lazy
   },
   {
+    'fladson/vim-kitty',
+    ft = 'kitty',
+    -- tag = '*', -- You can select a tagged version
+  },
+  {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -100,7 +105,14 @@ return {
           --  For example, in C this would take you to the header.
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
-          map('<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', 'Open diagnostics in a floating window')
+          map('<space>e', function()
+            -- Use RustLsp renderDiagnostics if rust, otherwise use the default
+            if vim.bo.filetype == 'rust' then
+              vim.cmd.RustLsp { 'renderDiagnostic', 'current' }
+            else
+              vim.diagnostic.open_float()
+            end
+          end, 'Open diagnostics in a floating window')
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
