@@ -12,6 +12,9 @@ vim.keymap.set('n', '<C-S-a>', 'ggVG', { desc = 'Select all' })
 vim.keymap.set('n', '<A-o>', 'o<Esc>', { desc = 'Insert a new line below the cursor' })
 vim.keymap.set('n', '<A-O>', 'O<Esc>', { desc = 'Insert a new line above the cursor' })
 
+-- https://seblog.nl/2024/01/28/1/toggling-in-vim-with-unimpaired
+vim.keymap.set('n', '<leader>tc', ':Copilot <C-R>=copilot#Enabled() ? "disable" : "enable"<CR><CR>', { desc = 'Toggle [C]opilot' })
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.

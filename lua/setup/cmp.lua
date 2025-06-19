@@ -35,6 +35,7 @@ return { -- Autocompletion
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-nvim-lsp-signature-help',
     'hrsh7th/cmp-cmdline',
+    'R-nvim/cmp-r',
     'folke/lazydev.nvim',
     'onsails/lspkind.nvim',
   },
@@ -43,6 +44,7 @@ return { -- Autocompletion
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
     luasnip.config.setup {}
+    require('cmp_r').setup {}
 
     cmp.setup {
       snippet = {
@@ -114,6 +116,7 @@ return { -- Autocompletion
         { name = 'luasnip' },
         { name = 'path' },
         { name = 'nvim_lsp_signature_help' },
+        { name = 'cmp_r' },
       },
     }
 
