@@ -25,6 +25,16 @@ return { -- Collection of various small independent plugins/modules
                 vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { link = "Comment" })
             end,
         })
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = {
+                "dashboard",
+                "lazy",
+                "mason",
+            },
+            callback = function()
+                vim.b.miniindentscope_disable = true
+            end,
+        })
 
         require("mini.splitjoin").setup()
 
