@@ -1,4 +1,3 @@
-import os
 from subprocess import run
 import sys
 import time
@@ -13,40 +12,29 @@ animation=[
 "   ᨈ ܢ      ",
 "  (^˕^)ᜪ_⎠  ",
 "  |ˎ     )  ",
-"  ૮ᒐ \"\"૮ᒐᐟ  ",
+'  ૮ᒐ ""૮ᒐᐟ  ',
 ],
 [
 "  /ᐠ_^      ",
 " (^˕^ )__⎠  ",
 "  |ˎ     )  ",
-"  ᒐ૮ \"\"ᒐ૮ᐟ  ",
+'  ᒐ૮ ""ᒐ૮ᐟ  ',
 ],
 [
 "  ᨈ /\\      ",
 " (^˕^)___/  ",
 "  |ˎ     )  ",
-"  ૮ᒐ \"\"૮ᒐᐟ  ",
+'  ૮ᒐ ""૮ᒐᐟ  ',
 ],
 [
 "  /ᐠ_^      ",
 " (^˕^ )__/  ",
 "  |ˎ     )  ",
-"  ᒐ૮ \"\"ᒐ૮ᐟ  ",
+'  ᒐ૮ ""ᒐ૮ᐟ  ',
 ]]
 
 frame_w = 12
 frame_h = 4
-
-temp_dir = os.path.join(os.path.dirname(banner_path), "temp")
-
-if not os.path.exists(temp_dir):
-    os.makedirs(temp_dir)
-
-for file in os.listdir(temp_dir):
-    os.remove(os.path.join(temp_dir, file))
-
-temp_file = os.path.join(temp_dir, f"{seed}.txt")
-# print(temp_file)
 
 with open(banner_path, 'r', encoding="utf-8") as file:
     banner = file.read().splitlines()
@@ -86,12 +74,8 @@ while True:
             out = out[:x] + line + out[x + frame_w:]
         content[y+j] = out
 
-    with open(temp_file, 'w', encoding="utf-8") as file:
-        file.write("\n".join(content))
-
     print("\033[H\033[?25l", end="\n")
-    # run(["lolcrab", "-a", temp_file], text=True)
-    run(["lolcrab", "-S", seed, "-z", str(t), temp_file], text=True)
+    run([f"echo -e '{'\n'.join(content)}' | lolcrab -S {seed} -z {str(t)}"], shell=True)
     time.sleep(0.05)
     t += 1
     if t % 10 == 0:
