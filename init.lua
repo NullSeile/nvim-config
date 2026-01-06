@@ -128,39 +128,46 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
+local function cond_require(module, optional)
+    if optional and vim.env.NVIM_MINIMAL then
+        return {}
+    end
+    return require(module)
+end
+
 require("lazy").setup({
-    require("plugins.lsp"),
-    require("plugins.autocomplete"),
-    require("plugins.treesitter"),
-    require("plugins.debug"),
-    require("plugins.lint"),
+    cond_require("plugins.lsp"),
+    cond_require("plugins.autocomplete"),
+    cond_require("plugins.treesitter"),
+    cond_require("plugins.debug", true),
+    cond_require("plugins.lint"),
 
-    require("plugins.mini"),
-    require("plugins.telescope"),
-    require("plugins.neo-tree"),
-    require("plugins.color-picker"),
-    require("plugins.terminal"),
-    require("plugins.boole"),
-    require("plugins.undotree"),
+    cond_require("plugins.mini"),
+    cond_require("plugins.telescope"),
+    cond_require("plugins.neo-tree"),
+    cond_require("plugins.color-picker"),
+    cond_require("plugins.terminal"),
+    cond_require("plugins.boole"),
+    cond_require("plugins.undotree"),
 
-    require("plugins.languages.typst"),
-    require("plugins.languages.markdown"),
-    require("plugins.languages.R"),
+    cond_require("plugins.languages.typst", true),
+    cond_require("plugins.languages.markdown", true),
+    cond_require("plugins.languages.R", true),
 
-    require("plugins.bufresize"),
-    require("plugins.smart-splits"),
-    require("plugins.autopairs"),
-    require("plugins.guess-indent"),
-    require("plugins.format"),
+    cond_require("plugins.bufresize"),
+    cond_require("plugins.smart-splits"),
+    cond_require("plugins.autopairs"),
+    cond_require("plugins.guess-indent"),
+    cond_require("plugins.format"),
 
-    require("plugins.gitsigns"),
-    require("plugins.which-key"),
+    cond_require("plugins.gitsigns"),
+    cond_require("plugins.which-key"),
 
-    require("plugins.cat"),
-    require("plugins.flashbang"),
-    require("plugins.colorscheme"),
-    require("plugins.todo-comments"),
-    require("plugins.dashboard"),
+    cond_require("plugins.cat"),
+    cond_require("plugins.flashbang"),
+    cond_require("plugins.colorscheme"),
+    cond_require("plugins.todo-comments"),
+    cond_require("plugins.dashboard", true),
 }, {
     ui = {
         icons = vim.g.have_nerd_font and {} or {

@@ -4,8 +4,8 @@ return {
     config = function()
         require("smart-splits").setup({
             -- multiplexer_integration = 'tmux',
-            -- at_edge = 'stop',
-            at_edge = "wrap",
+            at_edge = "stop",
+            -- at_edge = "wrap",
         })
 
         vim.keymap.set("n", "<C-Left>", require("smart-splits").resize_left)
