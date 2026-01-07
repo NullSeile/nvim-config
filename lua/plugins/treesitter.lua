@@ -1,7 +1,7 @@
 return { -- Highlight, edit, and navigate code
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    main = "nvim-treesitter.configs", -- Sets main module to use for opts
+    main = "nvim-treesitter.config", -- Sets main module to use for opts
     dependencies = {
         { "kmonad/kmonad-vim", fmt = "kdb" },
         -- { "maelvalais/gmpl.vim" },
