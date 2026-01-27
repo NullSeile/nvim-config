@@ -149,6 +149,8 @@ require("lazy").setup({
     cond_require("plugins.terminal"),
     cond_require("plugins.boole"),
     cond_require("plugins.undotree"),
+    cond_require("plugins.copilot"),
+    cond_require("plugins.grug-far"),
 
     cond_require("plugins.languages.typst", true),
     cond_require("plugins.languages.markdown", true),

@@ -9,6 +9,18 @@ return { -- Collection of various small independent plugins/modules
         --     end,
         -- })
 
+        -- require("mini.diff").setup({
+        --     -- view = {
+        --     --   style = 'sign',
+        --     --   signs = {
+        --     --     add = '▎',
+        --     --     change = '▎',
+        --     --     delete = '',
+        --     --   },
+        --     -- },
+        -- })
+        -- vim.keymap.set({ "n", "v" }, "<leader>go", '<cmd>lua require("mini.diff").toggle_overlay()<CR>')
+
         require("mini.indentscope").setup({
             draw = {
                 -- delay = 0,
