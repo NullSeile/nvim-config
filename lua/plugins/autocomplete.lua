@@ -27,7 +27,11 @@ return { -- Autocompletion
                     end,
                 },
             },
-            opts = {},
+            opts = {
+                paths = {
+                    "~/.config/nvim/snippets",
+                },
+            },
         },
         "folke/lazydev.nvim",
     },

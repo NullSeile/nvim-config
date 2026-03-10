@@ -5,6 +5,8 @@ vim.g.maplocalleader = " "
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+vim.o.swapfile = false
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
@@ -150,8 +152,12 @@ require("lazy").setup({
     cond_require("plugins.boole"),
     cond_require("plugins.undotree"),
     cond_require("plugins.copilot"),
+    -- cond_require("plugins.supermaven"),
+    cond_require("plugins.99"),
+    cond_require("plugins.opencode"),
     cond_require("plugins.grug-far"),
 
+    cond_require("plugins.languages.c-trencada", true),
     cond_require("plugins.languages.typst", true),
     cond_require("plugins.languages.markdown", true),
     cond_require("plugins.languages.R", true),

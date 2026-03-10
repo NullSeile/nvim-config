@@ -71,12 +71,13 @@ return {
                     map("grt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
 
                     map("<leader>e", function()
+                        vim.diagnostic.open_float()
                         -- Use RustLsp renderDiagnostics if rust, otherwise use the default
-                        if vim.bo.filetype == "rust" then
-                            vim.cmd.RustLsp({ "renderDiagnostic", "current" })
-                        else
-                            vim.diagnostic.open_float()
-                        end
+                        -- if vim.bo.filetype == "rust" then
+                        --     vim.cmd.RustLsp({ "renderDiagnostic", "current" })
+                        -- else
+                        --     vim.diagnostic.open_float()
+                        -- end
                     end, "Open diagnostics in a floating window")
 
                     -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
@@ -149,7 +150,7 @@ return {
             vim.diagnostic.config({
                 severity_sort = true,
                 float = { border = "rounded", source = "if_many" },
-                underline = { severity = vim.diagnostic.severity.ERROR },
+                underline = { severity = vim.diagnostic.severity.WARN },
                 signs = vim.g.have_nerd_font and {
                     text = {
                         [vim.diagnostic.severity.ERROR] = "󰅚 ",
