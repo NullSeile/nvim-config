@@ -130,6 +130,8 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
+vim.g.python3_host_prog=vim.fn.expand(".venv/bin/python3")
+
 local function cond_require(module, optional)
     if optional and vim.env.NVIM_MINIMAL then
         return {}
@@ -154,19 +156,22 @@ require("lazy").setup({
     cond_require("plugins.copilot"),
     -- cond_require("plugins.supermaven"),
     cond_require("plugins.99"),
-    cond_require("plugins.opencode"),
+    -- cond_require("plugins.opencode"),
     cond_require("plugins.grug-far"),
 
     cond_require("plugins.languages.c-trencada", true),
     cond_require("plugins.languages.typst", true),
     cond_require("plugins.languages.markdown", true),
     cond_require("plugins.languages.R", true),
+    cond_require("plugins.languages.strudel", true),
+    cond_require("plugins.languages.godot", true),
+    cond_require("plugins.languages.notebooks", true),
 
     cond_require("plugins.bufresize"),
     cond_require("plugins.smart-splits"),
     cond_require("plugins.autopairs"),
     cond_require("plugins.guess-indent"),
-    cond_require("plugins.format"),
+    -- cond_require("plugins.format"),
 
     cond_require("plugins.gitsigns"),
     cond_require("plugins.which-key"),

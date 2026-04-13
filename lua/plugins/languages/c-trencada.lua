@@ -1,3 +1,4 @@
 return {
-    dir = "~/dev/c-trencada.vim/",
+  "c-trencada/c-trencada.vim",
+    -- dir = "~/dev/c-trencada.vim/",
 }
