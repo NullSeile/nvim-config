@@ -1,3 +1,6 @@
+vim.o.exrc = true
+vim.o.secure = true
+
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -130,7 +133,7 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
-vim.g.python3_host_prog=vim.fn.expand(".venv/bin/python3")
+vim.g.python3_host_prog = vim.fn.expand(".venv/bin/python3")
 
 local function cond_require(module, optional)
     if optional and vim.env.NVIM_MINIMAL then
@@ -146,6 +149,8 @@ require("lazy").setup({
     cond_require("plugins.debug", true),
     cond_require("plugins.lint"),
 
+    -- cond_require("plugins.uls"),
+
     cond_require("plugins.mini"),
     cond_require("plugins.telescope"),
     cond_require("plugins.neo-tree"),
@@ -158,6 +163,7 @@ require("lazy").setup({
     cond_require("plugins.99"),
     -- cond_require("plugins.opencode"),
     cond_require("plugins.grug-far"),
+    cond_require("plugins.teamtype"),
 
     cond_require("plugins.languages.c-trencada", true),
     cond_require("plugins.languages.typst", true),
@@ -166,12 +172,13 @@ require("lazy").setup({
     cond_require("plugins.languages.strudel", true),
     cond_require("plugins.languages.godot", true),
     cond_require("plugins.languages.notebooks", true),
+    cond_require("plugins.languages.flutter", true),
 
     cond_require("plugins.bufresize"),
     cond_require("plugins.smart-splits"),
     cond_require("plugins.autopairs"),
     cond_require("plugins.guess-indent"),
-    -- cond_require("plugins.format"),
+    cond_require("plugins.format"),
 
     cond_require("plugins.gitsigns"),
     cond_require("plugins.which-key"),

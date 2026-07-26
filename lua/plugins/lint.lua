@@ -95,7 +95,9 @@ return {
                 -- ),
             }
 
-            lint.linters_by_ft["c-trencada"] = { "c_trencada" }
+            lint.linters_by_ft = {
+                ["c-trencada"] = { "c_trencada" },
+            }
             -- lint.linters_by_ft["typst"] = { "languagetool" }
 
             -- To allow other plugins to add linters to require('lint').linters_by_ft,

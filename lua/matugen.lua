@@ -7,9 +7,14 @@ local known_themes = {
         base0B = "#76946a",
     },
     ["kanagawa-dragon"] = {
-        base09 = "#8ba4b0",
-        base0A = "#c4b28a",
+        base09 = "#c4746e",
+        base0A = "#8ea4a2",
         base0B = "#8a9a7b",
+    },
+    ["kanagawa-paper"] = {
+        base09 = "#938aa9",
+        base0A = "#8ea49e",
+        base0B = "#c4b28a",
     },
     ["rose-pine"] = {
         base09 = "#31748f",
