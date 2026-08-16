@@ -5,7 +5,5 @@ return {
         "nvim-lua/plenary.nvim",
         -- "stevearc/dressing.nvim", -- optional for vim.ui.select
     },
-    config = {
-        fvm = true,
-    },
+    config = {},
 }

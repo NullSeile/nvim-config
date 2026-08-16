@@ -53,7 +53,7 @@ function M.setup()
         base00 = "#1f1f28", -- Default Background
         base01 = "#2a2a37", -- Lighter Background (status bars)
         base02 = "#333343", -- Selection Background
-        base03 = "#676785", -- Comments, Invisibles
+        base03 = "#68697a", -- Comments, Invisibles
         -- Foreground tones
         base04 = "#717c7c", -- Dark Foreground (status bars)
         base05 = "#c8c093", -- Default Foreground
