@@ -50,24 +50,24 @@ end
 function M.setup()
     local colors = {
         -- Background tones
-        base00 = "#1f1f28", -- Default Background
-        base01 = "#2a2a37", -- Lighter Background (status bars)
-        base02 = "#333343", -- Selection Background
-        base03 = "#68697a", -- Comments, Invisibles
+        base00 = "#181616", -- Default Background
+        base01 = "#282727", -- Lighter Background (status bars)
+        base02 = "#323131", -- Selection Background
+        base03 = "#67635e", -- Comments, Invisibles
         -- Foreground tones
-        base04 = "#717c7c", -- Dark Foreground (status bars)
-        base05 = "#c8c093", -- Default Foreground
-        base06 = "#c8c093", -- Light Foreground
-        base07 = "#c8c093", -- Lightest Foreground
+        base04 = "#c8c093", -- Dark Foreground (status bars)
+        base05 = "#c5c9c5", -- Default Foreground
+        base06 = "#c5c9c5", -- Light Foreground
+        base07 = "#c5c9c5", -- Lightest Foreground
         -- Accent colors
-        base08 = "#c34043", -- Variables, XML Tags, Errors
-        base09 = "#7e9cd8", -- Integers, Constants
-        base0A = "#c0a36e", -- Classes, Search Background
-        base0B = "#76946a", -- Strings, Diff Inserted
-        base0C = "#96b1e9", -- Regex, Escape Chars
-        base0D = "#ade996", -- Functions, Methods
-        base0E = "#e9cb96", -- Keywords, Storage
-        base0F = "#430d0e", -- Deprecated, Embedded Tags
+        base08 = "#c4746e", -- Variables, XML Tags, Errors
+        base09 = "#c4746e", -- Integers, Constants
+        base0A = "#8ea4a2", -- Classes, Search Background
+        base0B = "#8a9a7b", -- Strings, Diff Inserted
+        base0C = "#e99c96", -- Regex, Escape Chars
+        base0D = "#bee996", -- Functions, Methods
+        base0E = "#96e9e1", -- Keywords, Storage
+        base0F = "#60241f", -- Deprecated, Embedded Tags
     }
     for theme_name, theme_colors in pairs(known_themes) do
         if is_same_theme(colors, theme_colors) then
