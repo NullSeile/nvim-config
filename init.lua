@@ -164,6 +164,7 @@ require("lazy").setup({
     -- cond_require("plugins.opencode"),
     cond_require("plugins.grug-far"),
     cond_require("plugins.teamtype"),
+    cond_require("plugins.peek"),
 
     cond_require("plugins.languages.c-trencada", true),
     cond_require("plugins.languages.typst", true),
