@@ -1,11 +1,23 @@
 return {
-    "mrjones2014/smart-splits.nvim",
+    "smart-splits-nvim/smart-splits.nvim",
     lazy = false,
+    dependencies = {
+        {
+            'smart-splits-nvim/backend-tmux',
+            main = 'smart-splits-backend-tmux'
+        },
+    },
     config = function()
         require("smart-splits").setup({
-            -- multiplexer_integration = 'tmux',
-            at_edge = "stop",
-            -- at_edge = "wrap",
+            mux = {
+                backend = 'smart-splits-backend-tmux',
+                warn_if_unusable = true,
+            },
+            move = {
+                at_edge = "stop",
+                same_row = false,
+                float = 'previous',
+            },
         })
 
         vim.keymap.set("n", "<C-Left>", require("smart-splits").resize_left)
