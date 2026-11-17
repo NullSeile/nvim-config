@@ -96,6 +96,10 @@ vim.keymap.set("n", "<C-S-a>", "ggVG", { desc = "Select all" })
 vim.keymap.set("n", "<A-o>", "o<Esc>", { desc = "Insert a new line below the cursor" })
 vim.keymap.set("n", "<A-O>", "O<Esc>", { desc = "Insert a new line above the cursor" })
 
+-- change j k to move by visual lines instead of logical lines in normal and visual mode
+vim.keymap.set({"n", "v"}, "j", "gj", { desc = "Move down by visual line" })
+vim.keymap.set({"n", "v"}, "k", "gk", { desc = "Move up by visual line" })
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.

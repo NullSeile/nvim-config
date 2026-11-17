@@ -67,7 +67,7 @@ function M.setup()
         base0C = "#e99c96", -- Regex, Escape Chars
         base0D = "#bee996", -- Functions, Methods
         base0E = "#96e9e1", -- Keywords, Storage
-        base0F = "#60241f", -- Deprecated, Embedded Tags
+        base0F = "#4b3230", -- Deprecated, Embedded Tags
     }
     for theme_name, theme_colors in pairs(known_themes) do
         if is_same_theme(colors, theme_colors) then

@@ -35,6 +35,7 @@ return {
                         mode = mode or "n"
                         vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
                     end
+                    local client = vim.lsp.get_client_by_id(event.data.client_id)
 
                     -- Rename the variable under your cursor.
                     map("grn", vim.lsp.buf.rename, "[R]e[n]ame")
@@ -70,15 +71,34 @@ return {
                     --  the definition of its *type*, not where it was *defined*.
                     map("grt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
 
-                    map("<leader>e", function()
-                        vim.diagnostic.open_float()
-                        -- Use RustLsp renderDiagnostics if rust, otherwise use the default
-                        -- if vim.bo.filetype == "rust" then
-                        --     vim.cmd.RustLsp({ "renderDiagnostic", "current" })
-                        -- else
-                        --     vim.diagnostic.open_float()
-                        -- end
-                    end, "Open diagnostics in a floating window")
+
+                    map("<leader>e", vim.diagnostic.open_float, "Open diagnostics in a floating window")
+
+                    for _, c in ipairs(vim.lsp.get_clients({ bufnr = event.buf })) do
+                        if c.name == "ltex" or c.name == "ltex_plus" then
+                            map("<leader>e", function()
+                                vim.diagnostic.open_float({ scope = "cursor" })
+                            end, "Open diagnostics in a floating window (cursor)")
+                            -- Since ltex diagnostics are read from the cursor float, don't
+                            -- also render all of them as virtual text at the end of lines.
+                            -- Scope this to the ltex namespace so other servers keep theirs.
+                            vim.diagnostic.config(
+                                { virtual_text = false },
+                                vim.lsp.diagnostic.get_namespace(c.id)
+                            )
+                            break
+                        end
+                    end
+
+                    -- map("<leader>e", function()
+                    --     vim.diagnostic.open_float()
+                    --     -- Use RustLsp renderDiagnostics if rust, otherwise use the default
+                    --     -- if vim.bo.filetype == "rust" then
+                    --     --     vim.cmd.RustLsp({ "renderDiagnostic", "current" })
+                    --     -- else
+                    --     --     vim.diagnostic.open_float()
+                    --     -- end
+                    -- end, "Open diagnostics in a floating window")
 
                     -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
                     ---@param client vim.lsp.Client
@@ -150,7 +170,9 @@ return {
             vim.diagnostic.config({
                 severity_sort = true,
                 float = { border = "rounded", source = "if_many" },
-                underline = { severity = vim.diagnostic.severity.WARN },
+                -- `sev = HINT` used to match only hint diagnostics, so INFO/WARN/ERROR
+                -- (including ltex-plus, which defaults to INFO) were never underlined.
+                underline = { severity = { min = vim.diagnostic.severity.HINT } },
                 signs = vim.g.have_nerd_font and {
                     text = {
                         [vim.diagnostic.severity.ERROR] = "󰅚 ",

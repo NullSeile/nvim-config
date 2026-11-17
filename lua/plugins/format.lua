@@ -6,28 +6,29 @@ return { -- Autoformat
         {
             "<leader>F",
             function()
-                require("conform").format({ async = true, lsp_format = "fallback" })
+                require("conform").format({ async = true })
             end,
-            mode = "",
+            -- mode = "n",
             desc = "[F]ormat buffer",
         },
     },
     opts = {
-        notify_on_error = false,
+        notify_on_error = true,
         format_on_save = function(bufnr)
-            -- Disable "format_on_save lsp_fallback" for languages that don't
-            -- have a well standardized coding style. You can add additional
-            -- languages here or re-enable it for the disabled ones.
-            local disable_filetypes = { c = true, cpp = true }
-            if disable_filetypes[vim.bo[bufnr].filetype] then
-                return nil
+            local enabled_filetypes = {
+                lua = true,
+                zig = true,
+                -- python = true,
+            }
+            if enabled_filetypes[vim.bo[bufnr].filetype] then
+                return { timeout_ms = 500 }
             else
-                return {
-                    timeout_ms = 500,
-                    lsp_format = "fallback",
-                }
+                return nil
             end
         end,
+        default_format_opts = {
+            lsp_format = "fallback", -- Use external formatters if configured below, otherwise use LSP formatting. Set to `false` to disable LSP formatting entirely.
+        },
         formatters_by_ft = {
             lua = { "stylua" },
             -- Conform can also run multiple formatters sequentially

@@ -4,25 +4,25 @@ return {
         version = "0.2.0",
         opts = {}, -- see Options
     },
-    {
-        "3rd/image.nvim",
-        opts = {
-            backend = "kitty",
-            integrations = {},
-            max_width = 100,
-            max_height = 12,
-            max_height_window_percentage = math.huge,
-            max_width_window_percentage = math.huge,
-            window_overlap_clear_enabled = true,
-            window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
-        },
-        -- version = "1.1.0", -- or comment out for latest
-    },
+    -- {
+    --     "3rd/image.nvim",
+    --     opts = {
+    --         backend = "kitty",
+    --         integrations = {},
+    --         max_width = 100,
+    --         max_height = 12,
+    --         max_height_window_percentage = math.huge,
+    --         max_width_window_percentage = math.huge,
+    --         window_overlap_clear_enabled = true,
+    --         window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+    --     },
+    --     -- version = "1.1.0", -- or comment out for latest
+    -- },
     {
         "benlubas/molten-nvim",
         version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
         build = ":UpdateRemotePlugins",
-        dependencies = { "3rd/image.nvim" },
+        -- dependencies = { "3rd/image.nvim" },
         init = function()
             -- this is an example, not a default. Please see the readme for more configuration options
             -- vim.g.molten_output_win_max_height = 12
